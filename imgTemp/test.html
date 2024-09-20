@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Imagens</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #imageGallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #imageGallery img {
+            width: 150px;
+            height: auto;
+            margin: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            object-fit: cover;
+        }
+
+        #imageGallery img:hover {
+            transform: scale(1.2);
+            z-index: 10;
+        }
+
+        .fullscreen {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .no-scroll {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Teste de Imagens</h1>
+    <div id="imageGallery">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image 1">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image 2">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image 3">
+    </div>
+
+    <script>
+        function toggleFullscreen(imgElement) {
+            if (imgElement.classList.contains('fullscreen')) {
+                imgElement.classList.remove('fullscreen');
+                document.body.classList.remove('no-scroll');
+            } else {
+                imgElement.classList.add('fullscreen');
+                document.body.classList.add('no-scroll');
+            }
+        }
+
+        document.querySelectorAll('#imageGallery img').forEach(img => {
+            img.addEventListener('click', () => toggleFullscreen(img));
+        });
+    </script>
+    
+</body>
+</html>
